@@ -6,7 +6,7 @@
 #        Author: Sh1Yu6
 #   Description: ---
 #        Create: 2020-04-12 16:11:25
-# Last Modified: 2020-04-12 16:25:38
+# Last Modified: 2020-04-12 16:33:19
 #***********************************************/
 #include <iostream>
 #include <string>
@@ -14,18 +14,19 @@
 #include <algorithm>
 #include <cmath>
 #include <stdexcept>
+#include <deque>
 
 // 十进制整数n 转化为b进制
 // b进制, n整数
-std::vector<int> func(long long n, int b)
+std::deque<int> func(long long n, int b)
 {
     if(b <= 1 || n < 0)
         return {};
 
-    std::vector<int> v;
+    std::deque<int> v;
     while(n != 0)
     {
-        v.push_back(n%b);
+        v.push_front(n%b);
         n = n / b;
     }
     return v;
@@ -40,7 +41,7 @@ int main(int argc, char *argv[])
     std::cin >> n >> b;
     
     auto v = func(n, b);
-    for(auto i = v.rbegin(); i != v.rend(); ++i)
+    for(auto i = v.begin(); i != v.end(); ++i)
     {
         std::cout << *i ;
     }
